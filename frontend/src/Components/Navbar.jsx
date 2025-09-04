@@ -38,7 +38,7 @@ const Navbar = ({ currentLanguage, onLanguageChange, navLinks }) => {
 
           <div className="navbar-language-selector">
             <button onClick={toggleDropdown} className="language-button" aria-haspopup="menu" aria-expanded={isDropdownOpen}>
-              <span>{loading ? currentLanguage.toUpperCase() : terms?.title}</span>
+              <span>{currentLanguage==='en'? 'English': 'Swedish'}</span>
               <img 
                 src={`https://storage.123fakturere.no/public/flags/${currentLanguage === 'en' ? 'GB' : 'SE'}.png`} 
                 alt={`${currentLanguage} Flag`} 
