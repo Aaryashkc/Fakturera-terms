@@ -10,7 +10,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Container utility similar to Tailwind's max-w-7xl */
+
 .container-7xl {
   max-width: 80rem;
   margin-left: auto;
@@ -87,7 +87,7 @@ body {
 .language-dropdown {
   position: absolute;
   top: 100%;
-  left: 0; /* left-align under the button */
+  left: 0; 
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -124,9 +124,9 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .app { 
+  /* .app { 
     background-attachment: scroll;
-  }
+  } */
   .navbar-inner { position: relative;
    padding: 30px; 
   }
