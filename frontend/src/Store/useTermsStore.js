@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_BASE_URL = import.meta.env.MODE === "development" 
 ? 'http://localhost:5001' 
-: "https://fakturera-terms-2.onrender.com"
+: "https://fakturera-terms-3.onrender.com"
 
 export const useTermsStore = create((set) => ({
   terms: { lang: "en", title: "", button: "", text: "" },
