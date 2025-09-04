@@ -10,8 +10,12 @@ html {
 html,
 body,
 #root {
-  height: 100%;
-}
+  /* Use --vh for mobile viewport height fix */
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+} /* Already correct */
 
 body {
   margin: 0;
@@ -33,35 +37,35 @@ body {
 
 .app {
   position: relative;
-  min-height: 100vh;
-  /* min-height: 100vh; */
-  /* height: calc(100vh - calc(100vh - 100%)); */
-  /* max-height: -webkit-fill-available; */
+  height: calc(var(--vh, 1vh) * 100);
+  max-height: 100dvh;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: none;
   scroll-behavior: smooth;
-  /* width: 100%; */
   background: transparent;
   display: flex;
   flex-direction: column;
-}
+} /* Already correct */
 
 .app::before {
   content: "";
   position: fixed;
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
   background-image: url('./assets/walllpaper.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform;
-}
+  pointer-events: none;
+} /* Already correct */
 
 /* Navbar */
 .navbar {
