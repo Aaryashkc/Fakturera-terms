@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Terms from './Pages/Terms'
-import Navbar from './Components/Navbar'
-import './index.css'
+import React, { useState, useLayoutEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Terms from './Pages/Terms';
+import Navbar from './Components/Navbar';
+
+const useViewportHeight = () => {
+  useLayoutEffect(() => {
+    const setVh = () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+};
+
 
 const App = () => {
-  const [currentLanguage, setCurrentLanguage] = useState('en')
+  useViewportHeight();
+
+  // Your existing state and logic
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const navLinks = {
     en: [
@@ -22,20 +38,24 @@ const App = () => {
       { label: 'Om oss', href: '#about' },
       { label: 'Kontakta oss', href: '#contact' },
     ],
-  }
+  };
 
   const handleLanguageChange = (langCode) => {
-    setCurrentLanguage(langCode)
-  }
+    setCurrentLanguage(langCode);
+  };
 
   return (
-    <div className="app">
-      <Navbar onLanguageChange={handleLanguageChange} currentLanguage={currentLanguage} navLinks={navLinks[currentLanguage]} />
-      <Routes>
-        <Route path="/" element={<Terms language={currentLanguage} />} />
-      </Routes>
-    </div>
-  )
-}
+    <>
+      <div className="app">
+        <Navbar onLanguageChange={handleLanguageChange} currentLanguage={currentLanguage} navLinks={navLinks[currentLanguage]} />
+        <Routes>
+          <Route path="/" element={<Terms language={currentLanguage} />} />
+          {/* Add other routes here */}
+        </Routes>
+      </div>
+    </>
+  );
+};
 
-export default App 
+export default App;
+
