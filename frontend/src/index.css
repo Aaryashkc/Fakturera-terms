@@ -4,7 +4,7 @@
 }
 
 html {
-  height: 100%;
+  height: -webkit-fill-available;
 }
 
 html,
@@ -16,15 +16,10 @@ body,
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000000;
+  background-color: #ffffff;
+  height: -webkit-fill-available;
   overflow-x: hidden;
   overscroll-behavior-y: none;
-  /* Add the background directly to body for mobile compatibility */
-  background-image: url('./assets/walllpaper.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 
 .container-7xl {
@@ -38,14 +33,30 @@ body {
 
 .app {
   position: relative;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-height: 100svh;
+  /* min-height: 100dvh; */
   width: 100%;
   background: transparent;
   display: flex;
   flex-direction: column;
 }
 
-/* Remove the pseudo-element approach entirely - we're using body background instead */
+.app::before {
+  content: "";
+  position: fixed;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  z-index: -1;
+  background-image: url('./assets/walllpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
 
 /* Navbar */
 .navbar {
@@ -242,32 +253,10 @@ body {
   margin-bottom: 5px;
 }
 
-/* Mobile fixes for fixed background */
+/* Responsive */
 @media (max-width: 768px) {
 
-  /* Force fixed background on mobile - this is the key */
-  html {
-    background-image: url('./assets/walllpaper.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100%;
-  }
-
-  body {
-    /* Make body transparent so html background shows through */
-    background: transparent;
-    /* Prevent any viewport height issues */
-    min-height: 100vh;
-    min-height: 100svh;
-  }
-
-  .app {
-    min-height: 100vh;
-    min-height: 100svh;
-  }
-
+  /* .app { background-attachment: scroll; } */
   .navbar-inner {
     position: relative;
     padding: 30px;
@@ -300,7 +289,7 @@ body {
     display: none;
     flex-direction: column;
     width: 60%;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     position: absolute;
     gap: 10px;
@@ -308,7 +297,6 @@ body {
     left: 10%;
     padding: 20px;
     text-align: left;
-    border-radius: 10px;
   }
 
   .navbar-links.active {
@@ -323,33 +311,5 @@ body {
 
   .hamburger-menu {
     display: flex;
-  }
-}
-
-/* Additional mobile browser specific fixes */
-@supports (-webkit-touch-callout: none) {
-  /* iOS Safari */
-  @media (max-width: 768px) {
-    html {
-      /* Force GPU acceleration to prevent glitches */
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-    }
-
-    body {
-      /* Prevent elastic scrolling background issues */
-      position: relative;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
-}
-
-/* Android Chrome fixes */
-@supports (display: -webkit-flex) {
-  @media (max-width: 768px) {
-    html {
-      /* Ensure background stays put during address bar changes */
-      background-attachment: fixed !important;
-    }
   }
 }
