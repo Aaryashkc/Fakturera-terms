@@ -3,25 +3,26 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Fallback to 1vh; updated via JS to real viewport height */
+  --vh: 1vh;
+}
+
 html {
-  max-height: -webkit-fill-available;
+  height: -webkit-fill-available;
 }
 
 html,
 body,
 #root {
-  /* Use --vh for mobile viewport height fix */
-  height: calc(var(--vh, 1vh) * 100);
   min-height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-} /* Already correct */
+  min-height: -webkit-fill-available;
+}
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  max-height: -webkit-fill-available;
+  background-color: #000; /* avoid white flash behind bg image */
   overflow-x: hidden;
   overscroll-behavior-y: none;
 }
@@ -37,8 +38,8 @@ body {
 
 .app {
   position: relative;
-  height: calc(var(--vh, 1vh) * 100);
-  max-height: 100dvh;
+  /* Replace 100vh with JS-driven --vh to prevent mobile address bar jump */
+  min-height: calc(var(--vh, 1vh) * 100);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: none;
@@ -46,26 +47,26 @@ body {
   background: transparent;
   display: flex;
   flex-direction: column;
-} /* Already correct */
+}
 
 .app::before {
   content: "";
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  /* Fill viewport, slightly overscanned to hide any sub-pixel seams */
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
   z-index: -1;
   background-image: url('./assets/walllpaper.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform;
-  pointer-events: none;
-} /* Already correct */
+  pointer-events: none; /* ensure it never intercepts input */
+}
 
 /* Navbar */
 .navbar {

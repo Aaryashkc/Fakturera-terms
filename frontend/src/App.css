@@ -3,9 +3,7 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
-  /* Use --vh for consistent viewport height */
-  min-height: calc(var(--vh, 1vh) * 100);
-} /* Already correct */
+}
 
 .logo {
   height: 6em;
