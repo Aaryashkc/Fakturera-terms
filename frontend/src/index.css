@@ -3,10 +3,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Fallback so layout isn't broken before JS runs */
+  --vh: 1vh;
+}
+
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -23,7 +28,8 @@ body {
   /* NOTE: Make sure this path is correct for your project */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  /* Avoid fixed attachment on mobile to prevent address bar locking */
+  background-attachment: scroll;
 }
 
 .container-7xl {
@@ -40,9 +46,10 @@ body {
   /* Removed the complex/unreliable height calculations. Since html, body, */
   /* and #root are set to height: 100%, this element will now correctly */
   /* fill the initial viewport. We make this element the scroller, not the body. */
-  height: 100%;
+  min-height: calc(var(--vh) * 100);
   overflow-y: auto;
   /* This makes the .app container scrollable */
+  -webkit-overflow-scrolling: touch;
 
   /* --- Kept original styles for layout --- */
   scroll-behavior: smooth;
