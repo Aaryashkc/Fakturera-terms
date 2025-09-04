@@ -8,6 +8,7 @@ body {
   background-color: #000000;
   height: -webkit-fill-available;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 
@@ -26,12 +27,25 @@ body {
   min-height: 100dvh;
   min-height: -webkit-fill-available;
   width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fixed background without using background-attachment: fixed (mobile-safe) */
+.app::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
   background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  flex-direction: column;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* Navbar */
