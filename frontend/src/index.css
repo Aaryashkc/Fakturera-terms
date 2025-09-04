@@ -3,28 +3,27 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* Fallback to 1vh; updated via JS to real viewport height */
-  --vh: 1vh;
-}
-
-html {
-  height: -webkit-fill-available;
-}
-
 html,
 body,
 #root {
-  min-height: 100%;
-  min-height: -webkit-fill-available;
+  height: 100%;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000; /* avoid white flash behind bg image */
   overflow-x: hidden;
   overscroll-behavior-y: none;
+
+  /* --- FIX FOR MOBILE VIEWPORT JUMP --- */
+  /* By setting the background on the body and fixing its attachment, */
+  /* it will always cover the entire viewport. This prevents the white */
+  /* flash at the bottom when the mobile address bar collapses. */
+  background-image: url('./assets/walllpaper.jpg');
+  /* NOTE: Make sure this path is correct for your project */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .container-7xl {
@@ -37,36 +36,27 @@ body {
 }
 
 .app {
-  position: relative;
-  /* Replace 100vh with JS-driven --vh to prevent mobile address bar jump */
-  min-height: calc(var(--vh, 1vh) * 100);
-  overflow-x: hidden;
+  /* --- FIX --- */
+  /* Removed the complex/unreliable height calculations. Since html, body, */
+  /* and #root are set to height: 100%, this element will now correctly */
+  /* fill the initial viewport. We make this element the scroller, not the body. */
+  height: 100%;
   overflow-y: auto;
-  overscroll-behavior-y: none;
+  /* This makes the .app container scrollable */
+
+  /* --- Kept original styles for layout --- */
   scroll-behavior: smooth;
   background: transparent;
   display: flex;
   flex-direction: column;
+  position: relative;
+  /* Kept for positioning of children */
+  overflow-x: hidden;
 }
 
-.app::before {
-  content: "";
-  position: fixed;
-  /* Fill viewport, slightly overscanned to hide any sub-pixel seams */
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
-  z-index: -1;
-  background-image: url('./assets/walllpaper.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: transform;
-  pointer-events: none; /* ensure it never intercepts input */
-}
+/* The .app::before pseudo-element has been removed because its styles
+  have been moved to the body tag for the fix.
+*/
 
 /* Navbar */
 .navbar {
@@ -265,8 +255,6 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-
-  /* .app { background-attachment: scroll; } */
   .navbar-inner {
     position: relative;
     padding: 30px;
@@ -307,6 +295,8 @@ body {
     left: 10%;
     padding: 20px;
     text-align: left;
+    z-index: 1000;
+    /* Added z-index to ensure it's on top */
   }
 
   .navbar-links.active {
