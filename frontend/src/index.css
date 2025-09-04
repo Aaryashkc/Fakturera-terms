@@ -4,7 +4,7 @@
 }
 
 html {
-  height: -webkit-fill-available;
+  height: 100%;
 }
 
 html,
@@ -16,10 +16,11 @@ body,
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  height: -webkit-fill-available;
+  background-color: #000000;
+  /* Fallback color matching your image's dominant color */
   overflow-x: hidden;
   overscroll-behavior-y: none;
+  /* Remove height: -webkit-fill-available; as it causes issues */
 }
 
 .container-7xl {
@@ -34,10 +35,9 @@ body {
 .app {
   position: relative;
   min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
   width: 100%;
-  background: transparent;
+  background: #000000;
+  /* Fallback */
   display: flex;
   flex-direction: column;
 }
@@ -45,17 +45,29 @@ body {
 .app::before {
   content: "";
   position: fixed;
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
   background-image: url('./assets/walllpaper.jpg');
   background-size: cover;
   background-position: center;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: transform;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* Remove transform and will-change properties that can cause issues */
+}
+
+/* Alternative approach for better mobile support */
+@supports (-webkit-touch-callout: none) {
+
+  /* iOS Safari specific fixes */
+  .app::before {
+    background-attachment: scroll;
+    /* Increase height to account for address bar changes */
+    height: 120vh;
+    top: -10vh;
+  }
 }
 
 /* Navbar */
@@ -255,8 +267,24 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .app {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
 
-  /* .app { background-attachment: scroll; } */
+  body {
+    background-image: url('./assets/walllpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+  }
+
+  /* Hide the pseudo-element background on mobile */
+  .app::before {
+    display: none;
+  }
+
   .navbar-inner {
     position: relative;
     padding: 30px;
