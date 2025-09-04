@@ -111,7 +111,8 @@ body {
 .terms-page { width: 100%; display: flex; justify-content: center; align-items: flex-start; padding-top: 0; padding-bottom: 50px; }
 .terms-container { padding: 0 30px 30px 30px;  max-width: 800px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .terms-title { font-size: 1.7em; color: #ffffff; margin-bottom: 30px; margin-top: 6px; }
-.back-button { background-color: #128516; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-size: 1.2em; width: 300px; margin-bottom: 30px; transition: background-color 0.3s; }
+.back-button { background-color: #05ac0b; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-size: 1.2em; width: 300px; margin-bottom: 30px;  transition: background-color 0.3s; }
+.back-button1 { background-color: #05ac0b; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-size: 1.2em; width: 300px; margin-bottom: 30px; margin-top: 40px; transition: background-color 0.3s; }
 .back-button:hover { background-color: #45a049; }
 .terms-content-box { background-color: white; border-radius: 20px; padding: 20px; text-align: left; font-size: 1em; line-height: 1.6; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
 .terms-content-box p { margin-bottom: 5px; }

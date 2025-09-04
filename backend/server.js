@@ -3,6 +3,7 @@ dotenv.config()
 import express from 'express'
 import cors from 'cors'
 import { sequelize } from './libs/sequelize.js'
+import termRoutes from './routes/term.route.js'
 
 const app = express()
 const port = process.env.PORT
@@ -14,7 +15,8 @@ app.use(cors({
 }
 ))
 
-app.get('/',)
+// Mount API routes
+app.use('/api/terms', termRoutes)
 
 async function serverstart() {
   try {

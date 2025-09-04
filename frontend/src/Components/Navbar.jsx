@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTermsStore } from "../Store/useTermsStore"
 
 const Navbar = ({ currentLanguage, onLanguageChange, navLinks }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -16,6 +17,8 @@ const Navbar = ({ currentLanguage, onLanguageChange, navLinks }) => {
     onLanguageChange(langCode)
     setIsDropdownOpen(false)
   }
+
+  const { terms, loading } = useTermsStore()
 
   return (
     <div className="navbar">
@@ -35,7 +38,7 @@ const Navbar = ({ currentLanguage, onLanguageChange, navLinks }) => {
 
           <div className="navbar-language-selector">
             <button onClick={toggleDropdown} className="language-button" aria-haspopup="menu" aria-expanded={isDropdownOpen}>
-              <span>{currentLanguage === 'en' ? 'English' : 'Swedish'}</span>
+              <span>{loading ? currentLanguage.toUpperCase() : terms?.title}</span>
               <img 
                 src={`https://storage.123fakturere.no/public/flags/${currentLanguage === 'en' ? 'GB' : 'SE'}.png`} 
                 alt={`${currentLanguage} Flag`} 

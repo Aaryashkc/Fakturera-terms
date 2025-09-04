@@ -1,6 +1,5 @@
-// models/terms.js
 import { DataTypes } from "sequelize";
-import { sequelize } from "./sequelize.js";
+import { sequelize } from "../libs/sequelize.js";
 
 const Terms = sequelize.define("Terms", {
   lang: {
