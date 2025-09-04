@@ -1,10 +1,9 @@
-const { Sequelize } = require('sequelize');
-const dns = require('node:dns');
+import { Sequelize } from 'sequelize';
+import { setDefaultResultOrder } from 'node:dns';
 
 try {
-	dns.setDefaultResultOrder('ipv4first');
-} catch (_) {
-}
+	setDefaultResultOrder('ipv4first');
+} catch (_) {}
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -50,4 +49,4 @@ const sequelize = isProduction && databaseUrl
 		}
 	);
 
-module.exports = { sequelize };
+export { sequelize };
