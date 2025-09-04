@@ -41,7 +41,7 @@ body {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-image: url('./assets/walllpaper.jpg');
   background-size: cover;
   background-position: center;
   backface-visibility: hidden;
