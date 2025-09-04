@@ -1,10 +1,13 @@
 /* Base */
 * { box-sizing: border-box; }
+html { height: -webkit-fill-available; }
 html, body, #root { height: 100%; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #000000;
+  height: -webkit-fill-available;
+  overflow-x: hidden;
 }
 
 /* Container utility similar to Tailwind's max-w-7xl */
@@ -20,6 +23,8 @@ body {
 .app {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   width: 100%;
   background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
   background-size: cover;
@@ -119,6 +124,9 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .app { 
+    background-attachment: scroll;
+  }
   .navbar-inner { position: relative;
    padding: 30px; 
   }
