@@ -17,10 +17,10 @@ const useViewportHeight = () => {
 };
 
 
+
 const App = () => {
   useViewportHeight();
 
-  // Your existing state and logic
   const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const navLinks = {
@@ -46,11 +46,11 @@ const App = () => {
 
   return (
     <>
+
       <div className="app">
         <Navbar onLanguageChange={handleLanguageChange} currentLanguage={currentLanguage} navLinks={navLinks[currentLanguage]} />
         <Routes>
           <Route path="/" element={<Terms language={currentLanguage} />} />
-          {/* Add other routes here */}
         </Routes>
       </div>
     </>

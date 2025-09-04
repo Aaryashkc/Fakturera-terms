@@ -1,37 +1,37 @@
-        * {
-          box-sizing: border-box;
-        }
+* {
+  box-sizing: border-box;
+}
 
-        html,
-        body,
-        #root {
-          margin: 0;
-          padding: 0;
-        }
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
-        body {
-          font-family: Arial, sans-serif;
-          overflow: hidden;
-          /* Prevent body from scrolling */
-          overscroll-behavior-y: none;
-          /* The background is fixed to the body to cover the full viewport */
-          background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-        }
+body {
+  font-family: Arial, sans-serif;
+  /* REMOVED overflow: hidden; THIS WAS THE PROBLEM */
+  overscroll-behavior-y: none;
+  /* The background is fixed to the body to cover the full viewport */
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
-       .app {
-          /* The height is controlled by our JS hook via the --vh variable */
-          height: calc(var(--vh, 1vh) * 100);
-          overflow-y: auto;
-          /* This makes the .app div the scrollable container */
-          scroll-behavior: smooth;
-          background: transparent;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-        }
+.app {
+  /* The height is controlled by our JS hook via the --vh variable */
+  height: calc(var(--vh, 1vh) * 100);
+  overflow-y: auto;
+  /* This makes the .app div the scrollable container */
+  scroll-behavior: smooth;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 
 .container-7xl {
   max-width: 80rem;
