@@ -2,8 +2,9 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
+html
+{
+  height: -webkit-fill-available; 
 }
 body,
 #root {
@@ -13,22 +14,20 @@ body,
 
 body {
   font-family: Arial, sans-serif;
-  height: 100%;
+  height: 100vh;
   overscroll-behavior-y: none;
-  margin: 0;
-  padding: 0;
-}
-
-.app {
-  min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for mobile */
-  overflow-y: auto;
-  scroll-behavior: smooth;
   background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: local; /* Changed from fixed to local */
+  background-attachment: fixed;
+}
+
+.app {
+  height: 100lvh;
+  height: -webkit-fill-available;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: transparent;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -241,28 +240,6 @@ body {
 
 .terms-content-box p {
   margin-bottom: 5px;
-}
-
-/* Mobile viewport fixes */
-@supports (height: 100dvh) {
-  .app {
-    min-height: 100dvh;
-  }
-}
-
-/* Fallback for browsers that don't support dvh */
-@supports not (height: 100dvh) {
-  .app {
-    min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-  }
-}
-
-/* Additional mobile fixes */
-@media (max-width: 768px) {
-  .app {
-    background-attachment: scroll; /* Use scroll instead of local on mobile for better performance */
-  }
 }
 
 /* Responsive */
