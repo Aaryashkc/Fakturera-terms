@@ -14,8 +14,7 @@ body,
 
 body {
   font-family: Arial, sans-serif;
-  height: 100lvh;
-  height: -webkit-fill-available;
+  height: 100vh;
   overscroll-behavior-y: none;
   background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
   background-size: cover;
